@@ -17,18 +17,18 @@ import lombok.Setter;
 public class LocalProcessor {
     private String processorName;
     private Long period = 10_000_000_000_000L;
-    private String ProcessorVersion;
-    private Integer valueofCheap;
-    private Scanner informationscanner;
+    private String processorVersion;
+    private Integer valueOfCheap;
+    private Scanner informationScanner;
     private List<String> stringArrayList = new LinkedList<>();
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationscanner, List<String> stringArrayList) {
+                          Scanner informationScanner, List<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
-        ProcessorVersion = processorVersion;
-        this.valueofCheap = valueOfCheap;
-        this.informationscanner = informationscanner;
+        this.processorVersion = processorVersion;
+        this.valueOfCheap = valueOfCheap;
+        this.informationScanner = informationScanner;
         this.stringArrayList = stringArrayList;
     }
 
@@ -44,15 +44,15 @@ public class LocalProcessor {
     }
 
     public String getProcessorVersion() {
-        return ProcessorVersion;
+        return processorVersion;
     }
 
-    public Integer getValueofCheap() {
-        return valueofCheap;
+    public Integer getValueOfCheap() {
+        return valueOfCheap;
     }
 
-    public Scanner getInformationscanner() {
-        return informationscanner;
+    public Scanner getInformationScanner() {
+        return informationScanner;
     }
 
     public List<String> getStringArrayList() {
@@ -83,11 +83,11 @@ public class LocalProcessor {
         }
         try (Scanner sc = new Scanner(file)) {
 
-            StringBuilder strBuilder = new StringBuilder(ProcessorVersion);
+            StringBuilder strBuilder = new StringBuilder(processorVersion);
             while (sc.hasNextLine()) {
                 strBuilder.append(sc.hasNextLine());
             }
-            ProcessorVersion = strBuilder.toString();
+            processorVersion = strBuilder.toString();
         }
     }
 
