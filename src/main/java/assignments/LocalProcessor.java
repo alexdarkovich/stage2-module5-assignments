@@ -16,11 +16,11 @@ import lombok.Setter;
 @Setter
 public class LocalProcessor {
     private String processorName;
-    private Long period = 10_000_000_000_000L;
+    private Long period;
     private String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    private List<String> stringArrayList = new LinkedList<>();
+    private List<String> stringArrayList;
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
                           Scanner informationScanner, List<String> stringArrayList) {
@@ -33,6 +33,7 @@ public class LocalProcessor {
     }
 
     public LocalProcessor() {
+        this.period = 10_000_000_000_000L;
     }
 
     public String getProcessorName() {
@@ -61,34 +62,29 @@ public class LocalProcessor {
 
     @ListIteratorAnnotation
     public void listIterator(List<String> stringList) {
-        stringArrayList = new LinkedList<>(stringList);
+        this.stringArrayList = new LinkedList<>(stringList);
         for (String str : stringArrayList) {
             System.out.println(str.hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullNameProcessorGenerator(List<String> stringList) {
+    public String fullNameProcessorGenerator(LinkedList<String> stringList) {
         StringBuilder stb = new StringBuilder(processorName);
         for (String sss : stringList) {
             stb.append(sss).append(" ");
         }
-        return stb.toString();
+        return stb.toString().trim();
     }
 
     @ReadFullProcessorNameAnnotation
     public void readFullProcessorName(File file) throws FileNotFoundException {
-        if (file == null) {
-            throw new IllegalArgumentException("File cannot be null");
+        informationScanner = new Scanner(file);
+        StringBuilder stringBuilder = new StringBuilder();
+        while (informationScanner.hasNext()) {
+            stringBuilder.append(informationScanner.nextLine());
         }
-        try (Scanner sc = new Scanner(file)) {
-
-            StringBuilder strBuilder = new StringBuilder(processorVersion);
-            while (sc.hasNextLine()) {
-                strBuilder.append(sc.hasNextLine());
-            }
-            processorVersion = strBuilder.toString();
-        }
+        processorVersion = stringBuilder.toString();
     }
 
 
