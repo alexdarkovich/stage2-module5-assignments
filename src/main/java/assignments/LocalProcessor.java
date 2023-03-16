@@ -35,46 +35,55 @@ public class LocalProcessor {
     public LocalProcessor() {
     }
 
-    @ListIteratorAnnotation
-    public void listiterator(List<String> stringList) {
-        stringArrayList = new LinkedList<>(stringList);
-//        for (int i = 0; i < period; i++) {
-//            System.out.println(stringArrayList.get(i).hashCode());
+//    @ListIteratorAnnotation
+//    public void listiterator(List<String> stringList) {
+//        stringArrayList = new LinkedList<>(stringList);
+//        for (String str : stringArrayList) {
+//            System.out.println(str.hashCode());
 //        }
-        for (String str : stringArrayList) {
-            System.out.println(str.hashCode());
+//    }
+//    @FullNameProcessorGeneratorAnnotation
+//    public String fullnameProcessorgenerator(List<String> stringList) {
+//        StringBuilder stb = new StringBuilder(processorName);
+//        for (String sss : stringList) {
+//            stb.append(sss).append(" ");
+//        }
+//        return stb.toString();
+//    }
+//    @ReadFullProcessorNameAnnotation
+//    public void readfullprocessorname(File file) throws FileNotFoundException {
+//        try (Scanner sc = new Scanner(file)) {
+//
+//            StringBuilder strBuilder = new StringBuilder(ProcessorVersion);
+//            while (sc.hasNextLine()) {
+//                strBuilder.append(sc.hasNextLine());
+//            }
+//            ProcessorVersion = strBuilder.toString();
+//        }
+//    }
+
+
+    @ListIteratorAnnotation
+    public void listiterator(LinkedList<String> stringList) {
+        stringArrayList = new LinkedList<>(stringList);
+        for (int i = 0; i < period; i++) {
+            System.out.println(stringArrayList.get(i).hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullnameProcessorgenerator(List<String> stringList) {
-//        for (int i = 0; i < stringArrayList.size(); i++) {
-//            processorName+=stringList.get(i)+' ';
-//        }
-
-        StringBuilder stb = new StringBuilder(processorName);
-        for (String sss : stringList) {
-            stb.append(sss).append(" ");
+    public String fullnameProcessorgenerator(LinkedList<String> stringList) {
+        for (int i = 0; i < stringArrayList.size(); i++) {
+            processorName += stringList.get(i) + ' ';
         }
-
-        return stb.toString();
+        return processorName;
     }
 
     @ReadFullProcessorNameAnnotation
     public void readfullprocessorname(File file) throws FileNotFoundException {
-//            informationscanner = new Scanner(file);
-//            while (informationscanner.hasNext()) {
-//                ProcessorVersion+= informationscanner.nextLine();
-//            }
-
-        try (Scanner sc = new Scanner(file)) {
-
-            StringBuilder strBuilder = new StringBuilder(ProcessorVersion);
-            while (sc.hasNextLine()) {
-                strBuilder.append(sc.hasNextLine());
-            }
-            ProcessorVersion = strBuilder.toString();
+        informationscanner = new Scanner(file);
+        while (informationscanner.hasNext()) {
+            ProcessorVersion += informationscanner.nextLine();
         }
-
     }
 }
